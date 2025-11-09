@@ -1,2 +1,2 @@
 CompileFlags:
-  Add: [--std=c++17, -Wall, -Wextra, -Iinclude]
+  Add: [-Wall, -Wextra, -Iinclude]
