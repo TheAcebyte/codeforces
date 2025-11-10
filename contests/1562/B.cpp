@@ -16,11 +16,8 @@ void solve() {
   std::string n;
   std::cin >> k >> n;
 
-  int count[10]{0};
   for (int i = 0; i < k; ++i) {
     int digit = n[i] - '0';
-    ++count[digit];
-
     if (digit == 1 || digit == 4 || digit == 6 || digit == 8 || digit == 9) {
       std::cout << 1 << '\n';
       std::cout << digit << '\n';
@@ -28,44 +25,15 @@ void solve() {
     }
   }
 
-  for (int i = 0; i < 10; ++i) {
-    if (count[i] == 2) {
-      std::cout << 2 << '\n';
-      std::cout << i << i << '\n';
-      return;
+  for (int i = 0; i < k; ++i) {
+    for (int j = i + 1; j < k; ++j) {
+      int number = (n[i] - '0') * 10 + n[j] - '0';
+      if (!isPrime(number)) {
+        std::cout << 2 << '\n';
+        std::cout << n[i] << n[j] << '\n';
+        return;
+      }
     }
-  }
-
-  if (k == 2) {
-    std::cout << 2 << '\n';
-    std::cout << n << '\n';
-    return;
-  }
-
-  int a = n[0] - '0';
-  int b = n[1] - '0';
-  int c = n[2] - '0';
-
-  int ab = 10 * a + b;
-  int ac = 10 * a + c;
-  int bc = 10 * b + c;
-
-  if (!isPrime(ab)) {
-    std::cout << 2 << '\n';
-    std::cout << ab << '\n';
-    return;
-  }
-
-  if (!isPrime(ac)) {
-    std::cout << 2 << '\n';
-    std::cout << ac << '\n';
-    return;
-  }
-
-  if (!isPrime(bc)) {
-    std::cout << 2 << '\n';
-    std::cout << bc << '\n';
-    return;
   }
 }
 
