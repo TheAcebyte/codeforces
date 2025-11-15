@@ -1,6 +1,18 @@
 #include <iostream>
 
-void solve() {}
+void solve() {
+  int n;
+  std::cin >> n;
+
+  int result = 1;
+  int i = 1;
+  while (i < n) {
+    i = 2 * (i + 1);
+    ++result;
+  }
+
+  std::cout << result << '\n';
+}
 
 int main() {
 #ifdef DEBUG
