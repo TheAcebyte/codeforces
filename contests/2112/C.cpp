@@ -16,58 +16,38 @@ void solve() {
   std::sort(a.begin(), a.end());
 
   u64 result = 0;
-  for (int i = 0; i < n - 2; ++i) {
-    for (int j = i + 1; j < n - 1; ++j) {
-      int l = -1;
-      int lmin = j + 1;
-      int lmax = n - 1;
-      while (lmin <= lmax) {
-        int m = lmin + (lmax - lmin) / 2;
-        if (a[i] + a[j] + a[m] > a[n - 1]) {
-          l = m;
-          lmax = m - 1;
-        } else {
-          lmin = m + 1;
-        }
-      }
+  int max = a[n - 1];
+  for (int k = 2; k < n; ++k) {
+    int threshold = std::max(a[k], max - a[k]);
+    int i = 0;
+    int j = k - 1;
 
-      int r = -1;
-      int rmin = j + 1;
-      int rmax = n - 1;
-      while (rmin <= rmax) {
-        int m = rmin + (rmax - rmin) / 2;
-        if (a[i] + a[j] > a[m]) {
-          r = m;
-          rmin = m + 1;
-        } else {
-          rmax = m - 1;
-        }
+    while (i < j) {
+      if (a[i] + a[j] > threshold) {
+        result += j - i;
+        --j;
+      } else {
+        ++i;
       }
-
-      if (l == -1 || r == -1 || l > r) {
-        continue;
-      }
-
-      result += r - l + 1;
     }
   }
 
   std::cout << result << '\n';
 }
 
-int main() {
+  int main() {
 #ifdef DEBUG
-  std::freopen("input.txt", "r", stdin);
+    std::freopen("input.txt", "r", stdin);
 #endif
 
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(NULL);
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(NULL);
 
-  int T;
-  std::cin >> T;
-  while (T-- > 0) {
-    solve();
+    int T;
+    std::cin >> T;
+    while (T-- > 0) {
+      solve();
+    }
+
+    return 0;
   }
-
-  return 0;
-}
