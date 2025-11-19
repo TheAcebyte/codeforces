@@ -1,6 +1,15 @@
+#include <cstdint>
 #include <iostream>
 
-void solve() {}
+using u64 = std::uint64_t;
+
+void solve() {
+  u64 a, b, m;
+  std::cin >> a >> b >> m;
+
+  u64 result = m / a + m / b + 2;
+  std::cout << result << '\n';
+}
 
 int main() {
 #ifdef DEBUG
