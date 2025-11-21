@@ -1,28 +1,21 @@
-#include <algorithm>
 #include <iostream>
+#include <map>
 #include <numeric>
-#include <unordered_map>
-#include <vector>
 
 void solve() {
   int n;
   std::cin >> n;
 
-  std::vector<int> a(n);
-  for (int &x : a) {
+  std::map<int, int> indices;
+  for (int i = 1; i <= n; ++i) {
+    int x;
     std::cin >> x;
-  }
-
-  std::unordered_map<int, int> indices;
-  for (int i = n - 1; i >= 0; --i) {
-    if (indices.find(a[i]) == indices.end()) {
-      indices[a[i]] = i + 1;
-    }
+    indices[x] = i;
   }
 
   int result = -1;
-  for (auto a : indices) {
-    for (auto b : indices) {
+  for (auto &a : indices) {
+    for (auto &b : indices) {
       if (std::gcd(a.first, b.first) == 1) {
         result = std::max(a.second + b.second, result);
       }
