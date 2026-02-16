@@ -4,31 +4,31 @@
 #include <cstdint>
 #include <vector>
 
-using u64 = std::uint64_t;
+using i64 = std::int64_t;
 
-class Sieves {
+class sieves {
 private:
   std::vector<std::size_t> primes;
 
 public:
-  Sieves(std::size_t n) {
-    std::vector<bool> sieves(n + 1, true);
-    sieves[0] = sieves[1] = false;
+  sieves(std::size_t n) {
+    std::vector<bool> primality(n + 1, true);
+    primality[0] = primality[1] = false;
     for (std::size_t i = 0; i <= n; ++i) {
-      if (!sieves[i]) {
+      if (!primality[i]) {
         continue;
       }
 
       primes.push_back(i);
-      if ((u64)i * i > n) {
+      if ((i64)i * i > n) {
         continue;
       }
 
       for (std::size_t j = i * i; j <= n; j += i) {
-        sieves[j] = false;
+        primality[j] = false;
       }
     }
   }
 
-  const std::vector<std::size_t> &getPrimes() const { return primes; }
+  const std::vector<std::size_t> &get_primes() const { return primes; }
 };
