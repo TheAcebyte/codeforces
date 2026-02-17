@@ -23,18 +23,20 @@ public:
 
   T query(std::ptrdiff_t i) {
     T result = 0;
-    while (i >= 0) {
+    std::ptrdiff_t r = i;
+    while (r >= 0) {
       result += data[i];
-      i = (i & (i + 1)) - 1;
+      r = (r & (r + 1)) - 1;
     }
 
     return result;
   }
 
   void update(std::size_t i, T x) {
-    while (i < n) {
-      data[i] += x;
-      i = i | (i + 1);
+    std::size_t r = i;
+    while (r < n) {
+      data[r] += x;
+      r = r | (r + 1);
     }
   }
 };
