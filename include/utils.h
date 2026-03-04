@@ -2,12 +2,14 @@
 
 #include <array>
 #include <cassert>
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <functional>
 #include <iterator>
 #include <limits>
 #include <ostream>
+#include <random>
 #include <utility>
 #include <vector>
 
@@ -29,6 +31,20 @@ std::ostream &operator<<(std::ostream &out, const std::vector<T> &vector) {
 
   return out;
 }
+
+i64 rng(i64 min, i64 max) {
+  static std::random_device rd;
+  static std::seed_seq seed{
+      static_cast<std::seed_seq::result_type>(
+          std::chrono::steady_clock::now().time_since_epoch().count()),
+      rd()};
+  static std::mt19937_64 mt(seed);
+
+  std::uniform_int_distribution distribution(min, max);
+  return distribution(mt);
+}
+
+i64 rng(i64 max) { return rng(0, max); }
 
 template <typename T, std::size_t N, typename Compare = std::less<T>>
 std::array<std::size_t, N> get_top_n(const std::vector<T> &a,
