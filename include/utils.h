@@ -1,11 +1,17 @@
 #pragma once
 
+#include <array>
+#include <cassert>
+#include <cstddef>
 #include <cstdint>
+#include <functional>
+#include <iterator>
 #include <limits>
 #include <ostream>
+#include <utility>
 #include <vector>
 
-#define M 1e9 + 7
+#define M 1000000007
 
 using i32 = std::int32_t;
 using i64 = std::int64_t;
@@ -13,13 +19,38 @@ using i64 = std::int64_t;
 constexpr i32 i32inf = std::numeric_limits<i32>::max();
 constexpr i64 i64inf = std::numeric_limits<i64>::max();
 
-template<typename T>
-std::ostream& operator<<(std::ostream& out, const std::vector<T>& vector) {
-  const char* separator = "";
+template <typename T>
+std::ostream &operator<<(std::ostream &out, const std::vector<T> &vector) {
+  const char *separator = "";
   for (T x : vector) {
     out << separator << x;
     separator = " ";
   }
 
   return out;
+}
+
+template <typename T, std::size_t N, typename Compare = std::less<T>>
+std::array<std::size_t, N> get_top_n(const std::vector<T> &a,
+                                     Compare cmp = Compare()) {
+  assert(a.size() >= N);
+  constexpr std::size_t EMPTY = std::numeric_limits<std::size_t>::max();
+  std::array<std::size_t, N> top;
+  top.fill(EMPTY);
+
+  std::size_t n = a.size();
+  for (std::size_t i = 0; i < n; ++i) {
+    if (top[N - 1] != EMPTY && cmp(a[top[N - 1]], a[i])) {
+      continue;
+    }
+
+    std::size_t j = N - 1;
+    top[j] = i;
+    while (j > 0 && (top[j - 1] == EMPTY || !cmp(a[top[j - 1]], a[top[j]]))) {
+      std::swap(top[j - 1], top[j]);
+      --j;
+    }
+  }
+
+  return top;
 }
