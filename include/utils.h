@@ -3,6 +3,7 @@
 #include <array>
 #include <cassert>
 #include <chrono>
+#include <cmath>
 #include <cstddef>
 #include <cstdint>
 #include <functional>
@@ -50,23 +51,38 @@ template <typename T, std::size_t N, typename Compare = std::less<T>>
 std::array<std::size_t, N> get_top_n(const std::vector<T> &a,
                                      Compare cmp = Compare()) {
   assert(a.size() >= N);
-  constexpr std::size_t EMPTY = std::numeric_limits<std::size_t>::max();
   std::array<std::size_t, N> top;
-  top.fill(EMPTY);
+  std::array<std::size_t, N> filled;
+  filled.fill(false);
 
   std::size_t n = a.size();
   for (std::size_t i = 0; i < n; ++i) {
-    if (top[N - 1] != EMPTY && cmp(a[top[N - 1]], a[i])) {
+    if (filled[N - 1] && cmp(a[top[N - 1]], a[i])) {
       continue;
     }
 
     std::size_t j = N - 1;
     top[j] = i;
-    while (j > 0 && (top[j - 1] == EMPTY || !cmp(a[top[j - 1]], a[top[j]]))) {
+    filled[j] = true;
+    while (j > 0 && (!filled[j - 1] || !cmp(a[top[j - 1]], a[top[j]]))) {
       std::swap(top[j - 1], top[j]);
+      std::swap(filled[j - 1], filled[j]);
       --j;
     }
   }
 
   return top;
+}
+
+constexpr i64 isqrt(i64 n) {
+  i64 r = std::sqrt(n);
+  while ((r + 1) * (r + 1) <= n) {
+    ++r;
+  }
+
+  while (r * r > n) {
+    --r;
+  }
+
+  return r;
 }
