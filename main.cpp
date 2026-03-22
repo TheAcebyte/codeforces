@@ -8,11 +8,11 @@ int main() {
 #endif
 
   std::ios::sync_with_stdio(false);
-  std::cin.tie(NULL);
+  std::cin.tie(nullptr);
 
-  int T;
-  std::cin >> T;
-  while (T-- > 0) {
+  int t;
+  std::cin >> t;
+  while (t-- > 0) {
     solve();
   }
 
