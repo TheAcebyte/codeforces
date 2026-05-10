@@ -15,4 +15,4 @@ debug: build
 clean:
 	rm -f main
 
-.PHONY: all build run clean
+.PHONY: all build run debug clean
