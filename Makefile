@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -DDEBUG -Wall -Wextra -g
+CXXFLAGS = -std=c++17 -Wall -Wextra -g
 
 all: run clean
 
@@ -15,4 +15,11 @@ debug: build
 clean:
 	rm -f main
 
-.PHONY: all build run debug clean
+compile-docs:
+	latexmk -pdf docs.tex
+	latexmk -c docs.tex
+
+clean-docs:
+	latexmk -C docs.tex
+
+.PHONY: all build run debug clean compile-docs clean-docs

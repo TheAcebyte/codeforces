@@ -1,0 +1,47 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage{listings}
+\usepackage{minted}
+\usepackage{lipsum}
+
+\geometry{top=.5in,left=.5in,right=.5in,bottom=.5in}
+
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+\raggedcolumns
+
+\begin{document}
+\begin{multicols*}{2}
+
+\section{Template}
+\inputminted{cpp}{main.cpp}
+
+\section{Disjoint Set Union}
+\inputminted{cpp}{include/dsu.h}
+\vfill
+
+\section{Fenwick Tree}
+\inputminted{cpp}{include/fenwick_tree.h}
+
+\section{Sieves of Eratosthenes}
+\inputminted{cpp}{include/sieves.h}
+
+\section{Area of a Simple Polygon}
+\inputminted{cpp}{include/polygon_area.h}
+
+\section{Progressions}
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{@{} l l l @{}}
+\textbf{Property} & \textbf{Arithmetic} & \textbf{Geometric} \\
+\hline
+$n$-th Term & $a_n = a_1 + (n-1)d$ & $a_n = a_1 r^{n-1}$ \\
+Sum ($S_n$) & $\frac{n}{2}(a_1 + a_n)$ & $a_1 (\frac{1-r^n}{1-r})$ \\
+\hline
+\end{tabular}
+
+\end{multicols*}
+\end{document}

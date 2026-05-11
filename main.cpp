@@ -3,7 +3,7 @@
 void solve() {}
 
 int main() {
-#ifdef DEBUG
+#ifndef ONLINE_JUDGE 
   std::freopen("input.txt", "r", stdin);
 #endif
 

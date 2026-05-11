@@ -1,5 +1,3 @@
-#pragma once
-
 #include <array>
 #include <cassert>
 #include <chrono>
@@ -14,13 +12,8 @@
 #include <utility>
 #include <vector>
 
-#define M 1000000007
-
 using i32 = std::int32_t;
 using i64 = std::int64_t;
-
-constexpr i32 i32inf = std::numeric_limits<i32>::max();
-constexpr i64 i64inf = std::numeric_limits<i64>::max();
 
 template <typename T>
 std::ostream &operator<<(std::ostream &out, const std::vector<T> &vector) {
