@@ -6,11 +6,11 @@ all: run clean
 build:
 	$(CXX) $(CXXFLAGS) -o main main.cpp
 
-debug: build
-	gdb main
-
 run: build
 	./main
+
+debug: build
+	gdb main
 
 clean:
 	rm -f main
