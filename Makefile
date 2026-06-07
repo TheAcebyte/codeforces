@@ -15,4 +15,7 @@ debug: build
 clean:
 	rm -f main
 
-.PHONY: all build run debug clean
+restore:
+	git restore main.cpp input.txt
+
+.PHONY: all build run debug clean restore
