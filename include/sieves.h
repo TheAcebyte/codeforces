@@ -24,7 +24,7 @@ public:
 
       primes.push_back(i);
       spf[i] = i;
-      if ((i64)i * i > n) {
+      if (i * i > n) {
         continue;
       }
 
