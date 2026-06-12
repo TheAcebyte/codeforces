@@ -45,26 +45,5 @@ int main() {
     solve();
   }
 
-  // if (T == 6) {
-  //   std::cout << 0 << '\n';
-  //   std::cout << 11 << '\n';
-  //   std::cout << 4 << '\n';
-  //   std::cout << 4 << '\n';
-  //   std::cout << 17 << '\n';
-  //   std::cout << 60 << '\n';
-  //   return 0;
-  // }
-  //
-  // for (int t = 1; t <= T; ++t) {
-  //   int n;
-  //   std::string s;
-  //   std::cin >> n >> s;
-  //
-  //   if (t == 79) {
-  //     std::cout << n << '\n';
-  //     std::cout << s << '\n';
-  //   }
-  // }
-
   return 0;
 }
