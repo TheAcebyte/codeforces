@@ -8,11 +8,11 @@
 
 class dsu {
 private:
-  std::size_t n;
-  std::vector<std::size_t> p;
-  std::vector<std::size_t> sizes;
+  int n;
+  std::vector<int> p;
+  std::vector<int> sizes;
 
-  std::size_t find(std::size_t u) {
+  int find(int u) {
     if (p[u] == u) {
       return u;
     }
@@ -21,19 +21,19 @@ private:
   }
 
 public:
-  dsu(std::size_t n) : n(n), p(n), sizes(n, 1) {
+  dsu(int n) : n(n), p(n), sizes(n, 1) {
     std::iota(p.begin(), p.end(), 0);
   }
 
-  std::size_t find_set(std::size_t u) {
+  int find_set(int u) {
     assert(u < n);
     return find(u);
   }
 
-  void union_sets(std::size_t u, std::size_t v) {
+  void union_sets(int u, int v) {
     assert(u < n && v < n);
-    std::size_t s = find_set(u);
-    std::size_t t = find_set(v);
+    int s = find_set(u);
+    int t = find_set(v);
     if (s == t) {
       return;
     }
@@ -46,8 +46,8 @@ public:
     sizes[s] += sizes[t];
   }
 
-  std::size_t get_size(std::size_t u) {
-    std::size_t s = find_set(u);
+  int get_size(int u) {
+    int s = find_set(u);
     return sizes[s];
   }
 };
