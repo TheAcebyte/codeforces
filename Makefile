@@ -13,7 +13,7 @@ debug: build
 	gdb main
 
 clean:
-	rm -f main
+	rm -f main *.o
 
 restore:
 	git restore main.cpp input.txt
