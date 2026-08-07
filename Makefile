@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -g -O2
+CXXFLAGS = -std=c++17 -O2 -g -Wall -Wextra
 
 all: run clean
 
