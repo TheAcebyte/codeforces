@@ -51,8 +51,8 @@ private:
 
 public:
   segment_tree(int n) : n(n), data(4 * n) {}
-  segment_tree(const std::vector<T> &a) : segment_tree(a.size()) {
-    build(a, 0, 0, n - 1);
+  segment_tree(const std::vector<T> &v) : segment_tree(v.size()) {
+    build(v, 0, 0, n - 1);
   }
 
   T query(int i, int j) {
